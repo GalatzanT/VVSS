@@ -2,6 +2,20 @@ package drinkshop.domain;
 
 import java.io.Serializable;
 
+/**
+ * Represents a line item in an order.
+ * 
+ * Responsibilities:
+ * - associates a product with a quantity
+ * - computes the subtotal for that item
+ * 
+ * Association: OrderItem --"contains"--> Product (multiplicity 1)
+ * Role names: 
+ *   - OrderItem.product: the product being ordered
+ *   - OrderItem.quantity: the number of units ordered
+ * 
+ * Invariant: quantity >= 1
+ */
 public class OrderItem implements Serializable {
 
     private Product product;

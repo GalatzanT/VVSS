@@ -2,28 +2,29 @@ package drinkshop.ui;
 
 import drinkshop.domain.*;
 import drinkshop.repository.Repository;
-import drinkshop.repository.file.FileOrderRepository;
-import drinkshop.repository.file.FileProductRepository;
-import drinkshop.repository.file.FileRetetaRepository;
-import drinkshop.repository.file.FileStocRepository;
+import drinkshop.repository.RepositoryFactory;
 import drinkshop.service.DrinkShopService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Main application class for the DrinkShop system.
+ * Manages initialization using the Factory pattern for repository creation.
+ */
 public class DrinkShopApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        // ---------- Initializare Repository-uri care citesc din fisiere ----------
-        Repository<Integer, Product> productRepo = new FileProductRepository("data/products.txt");
-        Repository<Integer, Order> orderRepo = new FileOrderRepository("data/orders.txt", productRepo);
-        Repository<Integer, Reteta> retetaRepo = new FileRetetaRepository("data/retete.txt");
-        Repository<Integer, Stoc> stocRepo = new FileStocRepository("data/stocuri.txt");
+        // ---------- Initializare Repository-uri prin Factory (Design Pattern: Factory Method) ----------
+        Repository<Integer, Product> productRepo = RepositoryFactory.createProductRepository("data/products.txt");
+        Repository<Integer, Order> orderRepo = RepositoryFactory.createOrderRepository("data/orders.txt", productRepo);
+        Repository<Integer, Reteta> retetaRepo = RepositoryFactory.createRetetaRepository("data/retete.txt");
+        Repository<Integer, Stoc> stocRepo = RepositoryFactory.createStocRepository("data/stocuri.txt");
 
-        // ---------- Initializare Service ----------
+        // ---------- Initializare Service (Façade Pattern) ----------
         DrinkShopService service = new DrinkShopService(productRepo, orderRepo, retetaRepo, stocRepo);
 
         // ---------- Incarcare FXML ----------

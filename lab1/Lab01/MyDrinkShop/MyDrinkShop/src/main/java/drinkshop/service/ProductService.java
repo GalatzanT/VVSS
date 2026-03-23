@@ -6,6 +6,14 @@ import drinkshop.repository.Repository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Service for managing products in the system.
+ * 
+ * Responsibilities:
+ * - handles CRUD operations for products
+ * - provides filtering by category and type
+ * - delegates persistence to the repository layer
+ */
 public class ProductService {
 
     private final Repository<Integer, Product> productRepo;
@@ -28,13 +36,6 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-//        Iterable<Product> it=productRepo.findAll();
-//        ArrayList<Product> products=new ArrayList<>();
-//        it.forEach(products::add);
-//        return products;
-
-//        return StreamSupport.stream(productRepo.findAll().spliterator(), false)
-//                    .collect(Collectors.toList());
         return productRepo.findAll();
     }
 

@@ -1,7 +1,23 @@
 package drinkshop.domain;
 
-public class Product {
+import java.io.Serializable;
 
+/**
+ * Represents a beverage product in the DrinkShop system.
+ * 
+ * A product is characterized by:
+ * - an identifier (unique)
+ * - a name/description
+ * - a price
+ * - a category (e.g., HOT, COLD)
+ * - a type (e.g., COFFEE, TEA)
+ * 
+ * Association: Product --"belongs to"--> CategorieBautura
+ * Association: Product --"is of type"--> TipBautura
+ * Association: Product --"uses recipe"--> Reteta (implicit through id matching)
+ */
+public class Product implements Serializable {
+    private static final long serialVersionUID = 2405172041950251807L;
     private int id;
     private String nume;
     private double pret;
