@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>testspec Proiect233 - gtir3530_WBT</title>
+<link type="text/css" rel="stylesheet" href="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+</head>
+<body>
+<div>
+<div style="float:right;">TestLink Community [configure $tlCfg-&gt;document_generator-&gt;company_name]</div>
+<div>&nbsp;</div><hr />
+<p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo"  width= height= src="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></p></div>
+<div class="doc_title"><p>Test Specification</p></div>
+<div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Proiect233<br/>Test Suite: Proiect233 - gtir3530_WBT</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 05/04/2026</p></div>
+<div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
+<h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><p style="padding-left: 20px;"><b><a href="#toc_1">1.gtir3530_WBT</a></b></p>
+<p style="padding-left: 45px;"><a href="#toc_tc29569">P233-76: TC01_ValidOrder</a></p><p style="padding-left: 45px;"><a href="#toc_tc29573">P233-77: TC02_InvalidOrder_InsufficientStock</a></p></div><h1 class="doclevel" >Scope</h1>
+<div class="txtlevel"><p>Proiect de testare pentru studentii din grupa 233.</p></div>
+ <br/><a name='toc_1'></a>
+<h1 class='doclevel'>1.Test Suite : gtir3530_WBT</h1>
+<div><p>White-Box Testing Suite for F02 - Gestionare Comenzi</p>
+</div><a name="toc_tc29569"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P233-76: TC01_ValidOrder&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">gtir3530</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Verifică că o comandă cu produse disponibile &icirc;n stoc este procesată corect și bonul este generat.</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>Există cel puțin un produs cu rețetă definită.&nbsp;<br />
+Stocul ingredientelor este suficient pentru cantitatea comandată.</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Se creează o comandă cu un produs valid și cantitatea 1</p>
+</td><td><p>Comanda este acceptată</p>
+</td></tr><tr><td width="5">2</td><td><p>Se finalizează comanda</p>
+</td><td><p>Stocurile ingredientelor sunt decrementate corect; se generează fișier .csv cu bonul de casă</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">gdir3532_F02:  AdaugareComanda [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc29573"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case P233-77: TC02_InvalidOrder_InsufficientStock&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">gtir3530</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Verifică că o comandă este respinsă c&acirc;nd stocul unui ingredient este insuficient.</p>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><p>Există un produs cu rețetă definită.&nbsp;<br />
+Stocul unui ingredient necesar este 0 sau sub&nbsp;<br />
+cantitatea necesară pentru comandă.</p>
+</td></tr><tr><td><span class="label">#:</span></td><td><span class="label">Step actions:</span></td><td><span class="label">Expected Results:</span></td></tr><tr><td width="5">1</td><td><p>Se creează o comandă cu acel produs și cantitatea 1</p>
+</td><td><p>Comanda este respinsă cu un mesaj de eroare corespunzător</p>
+</td></tr><tr><td width="5">2</td><td><p>Se verifică stocurile ingredientelor</p>
+</td><td><p>Stocurile răm&acirc;n nemodificate</p>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">High</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">gdir3532_F02:  AdaugareComanda [Version : 1]<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+
+</body>
+</html>
