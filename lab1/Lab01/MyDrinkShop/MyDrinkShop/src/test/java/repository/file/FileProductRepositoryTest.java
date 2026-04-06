@@ -1,5 +1,8 @@
 package repository.file;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import drinkshop.domain.CategorieBautura;
 import drinkshop.domain.Product;
 import drinkshop.domain.TipBautura;
