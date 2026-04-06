@@ -1,6 +1,7 @@
 package drinkshop.repository.file;
 
 import drinkshop.repository.AbstractRepository;
+import drinkshop.service.exception.PersistenceException;
 
 import java.io.*;
 
@@ -9,12 +10,24 @@ public abstract class FileAbstractRepository<ID, E>
 
     protected String fileName;
 
-    public FileAbstractRepository(String fileName) {
+    protected FileAbstractRepository(String fileName) {
         this.fileName = fileName;
-        //loadFromFile();
+        loadFromFile();
     }
 
     protected void loadFromFile() {
+        File file = new File(fileName);
+        if (!file.exists()) {
+            try {
+                // ensure parent directories exist
+                File parent = file.getParentFile();
+                if (parent != null) parent.mkdirs();
+                file.createNewFile(); // create empty file
+            } catch (IOException ex) {
+                throw new PersistenceException("Cannot create data file: " + fileName, ex);
+            }
+        }
+
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
 
             String line;
@@ -24,7 +37,7 @@ public abstract class FileAbstractRepository<ID, E>
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PersistenceException("Failed to load from file: " + fileName, e);
         }
     }
 
@@ -37,7 +50,7 @@ public abstract class FileAbstractRepository<ID, E>
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new PersistenceException("Failed to write to file: " + fileName, e);
         }
     }
 

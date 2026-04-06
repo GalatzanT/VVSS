@@ -53,8 +53,6 @@ public class DrinkShopController {
     private ObservableList<IngredientReteta> newRetetaList = FXCollections.observableArrayList();
     private ObservableList<OrderItem> currentOrderItems = FXCollections.observableArrayList();
 
-    private Order currentOrder = new Order(1);
-
     public void setService(DrinkShopService service) {
         this.service = service;
         initData();
@@ -207,7 +205,8 @@ public class DrinkShopController {
             return;
         }
 
-        currentOrderItems.add(new OrderItem(selected, qty));
+        // Delegate to service to manage current order
+        service.addItemToCurrentOrder(new OrderItem(selected, qty));
         updateOrderTotal();
     }
 
@@ -215,30 +214,31 @@ public class DrinkShopController {
     private void onDeleteOrderItem() {
         OrderItem sel = currentOrderTable.getSelectionModel().getSelectedItem();
         if (sel != null) {
-            currentOrderItems.remove(sel);
+            // Delegate to service to manage current order
+            service.removeItemFromCurrentOrder(sel);
             updateOrderTotal();
         }
     }
 
     @FXML
     private void onFinalizeOrder() {
-        currentOrder.getItems().clear();
-        currentOrder.getItems().addAll(currentOrderItems);
+        Order currentOrder = service.getCurrentOrder();
         currentOrder.computeTotalPrice();
 
-        service.addOrder(currentOrder);
+        // Delegate checkout to service
+        service.checkoutCurrentOrder();
         txtReceipt.setText(service.generateReceipt(currentOrder));
 
         currentOrderItems.clear();
-        currentOrder = new Order(currentOrder.getId() + 1);
         updateOrderTotal();
     }
 
     private void updateOrderTotal() {
-        currentOrder.getItems().clear();
-        currentOrder.getItems().addAll(currentOrderItems);
-        double total = service.computeTotal(currentOrder);
+        Order currentOrder = service.getCurrentOrder();
+        double total = service.computeCurrentOrderTotal();
         lblOrderTotal.setText("Total: " + total);
+        // Sync UI list with service's order items
+        currentOrderItems.setAll(currentOrder.getItems());
     }
 
     // ---------- EXPORT + REVENUE ----------

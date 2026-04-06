@@ -4,6 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a customer order in the DrinkShop system.
+ * 
+ * Responsibilities:
+ * - maintains the ordered items
+ * - computes and stores the total price
+ * - provides order identification
+ * 
+ * Aggregation: Order --"contains"-> OrderItem (0..*) [composition]
+ * Aggregation: OrderItem --"references"-> Product
+ * 
+ * Note: This entity could be extended to include customer information and timestamps.
+ */
 public class Order implements Serializable {
 
     private int id;
