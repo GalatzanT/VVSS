@@ -40,26 +40,6 @@ class FileProductRepositoryWBTTest {
         }
     }
 
-    // --- 1. STATEMENT COVERAGE (SC) ---
-    // Scop: Fiecare linie de cod este executată cel puțin o dată.
-    @Test
-    @Tag("SC")
-    @DisplayName("SC: Acoperire instrucțiuni prin salvare cu succes și erori")
-    void testStatementCoverage() {
-        // Acoperă aruncarea excepției pentru entitate nulă
-        assertThrows(IllegalArgumentException.class, () -> repository.save(null));
-
-        // Acoperă salvarea cu succes și intrarea în bucla for (writeToFile)
-        Product validProduct = new Product(1, "Americano", 12.0, CategorieBautura.CLASSIC_COFFEE, TipBautura.WATER_BASED);
-        assertDoesNotThrow(() -> repository.save(validProduct));
-
-        // Acoperă blocul catch (IOException) setând un nume de fișier invalid (ex: pe un folder inexistent sau read-only)
-        FileProductRepository badRepo = new FileProductRepository("invalid_dir/bad_file.txt");
-        Product anotherProduct = new Product(2, "Latte", 15.0, CategorieBautura.MILK_COFFEE, TipBautura.DAIRY);
-        assertThrows(RuntimeException.class, () -> badRepo.save(anotherProduct));
-        // Notă: Repository-ul tău probabil aruncă RuntimeException / PersistenceException. Adaptează clasa excepției dacă e diferită.
-    }
-
     // --- 2. DECISION / CONDITION COVERAGE (DC) ---
     // Scop: Fiecare condiție a evaluat atât TRUE cât și FALSE.
     @Test

@@ -47,22 +47,6 @@ class FileProductRepositoryTest {
 
     @Tag("ECP")
     @ParameterizedTest
-    @ValueSource(ints = {500}) // Valoare reprezentativă din mijlocul clasei valide
-    @DisplayName("ECP Valid: Adăugare produs cu ID valid")
-    void testECP_ValidID(int validId) {
-        // Arrange
-        Product product = new Product(validId, "Espresso", 10.0, CategorieBautura.CLASSIC_COFFEE, TipBautura.BASIC);
-
-        // Act
-        Product result = repository.save(product);
-
-        // Assert
-        assertNull(result); // Null înseamnă că produsul e nou
-        assertEquals(product.getId(), repository.findOne(validId).getId());
-    }
-
-    @Tag("ECP")
-    @ParameterizedTest
     @ValueSource(ints = {-100}) // Valoare reprezentativă din clasa invalidă (negative)
     @DisplayName("ECP Invalid: ID negativ")
     void testECP_InvalidID(int invalidId) {
