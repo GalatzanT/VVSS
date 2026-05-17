@@ -9,12 +9,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.lang.classfile.Label;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-
-import javax.swing.table.TableColumn;
-import javax.swing.text.TableView;
 
 public class DrinkShopController {
 
