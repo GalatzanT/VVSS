@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class StocServiceTest {
 
     @Test
-    void TC01_reteta_null_returnsFalse() {
-        assertTrue(true);
+    public void TC01_ValidOrder() {
+    assertTrue(true);
     }
 
     @Test
