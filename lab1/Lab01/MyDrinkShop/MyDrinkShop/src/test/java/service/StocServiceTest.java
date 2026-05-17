@@ -1,4 +1,4 @@
-package mydrinkshop.service;
+package service;
 
 import org.junit.jupiter.api.Test;
 
