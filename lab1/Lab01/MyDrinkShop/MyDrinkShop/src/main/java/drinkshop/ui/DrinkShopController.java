@@ -9,8 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.lang.classfile.Label;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import javax.swing.table.TableColumn;
+import javax.swing.text.TableView;
 
 public class DrinkShopController {
 
@@ -118,7 +122,7 @@ public class DrinkShopController {
             alert.showAndWait();
             return;
         }else
-        if (service.getAllProducts().stream().filter(p->p.getId()==r.getId()).toList().size()>0) {
+        if (service.getAllProducts().stream().filter(p->p.getId()==r.getId()).collect(Collectors.toList()).size()>0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Error");
             alert.setHeaderText("Exista un produs cu reteta adaugata.");
