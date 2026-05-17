@@ -28,4 +28,26 @@ public class StocServiceTest {
     void TC3_add_product_FullIntegration() {
         assertTrue(true);
     }
+
+    //bbt
+    @Test
+    void testAddProduct_ECP_Valid
+() {
+        assertTrue(true);
+    }
+    @Test
+    void testAddProduct_ECP_Invalid
+() {
+        assertTrue(true);
+    }
+    @Test
+    void testAddProduct_BVA_Valid
+() {
+        assertTrue(true);
+    }
+    @Test
+    void add_product_BVA_Invalid
+() {
+        assertTrue(true);
+    }
 }
