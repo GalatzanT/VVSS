@@ -8,7 +8,7 @@ public class StocServiceTest {
     ///WBT
     @Test
     public void TC01_ValidOrder() {
-        assertTrue(true);
+    assertTrue(true);
     }
 
     @Test
@@ -31,19 +31,23 @@ public class StocServiceTest {
 
     //bbt
     @Test
-    void ECP_Valid_AddProduct() {
+    void testAddProduct_ECP_Valid
+() {
         assertTrue(true);
     }
     @Test
-    void ECP_Invalid_AddProduct() {
+    void testAddProduct_ECP_Invalid
+() {
         assertTrue(true);
     }
     @Test
-    void BVA_Valid_AddProduct() {
+    void testAddProduct_BVA_Valid
+() {
         assertTrue(true);
     }
     @Test
-    void BVA_Invalid_AddProduct() {
+    void add_product_BVA_Invalid
+() {
         assertTrue(true);
     }
 }
