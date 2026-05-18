@@ -92,28 +92,42 @@ public class StocServiceTest {
 
     // --- Boundary Value Analysis (BVA) ---
     @Test
-    void testAddProduct_BVA_Valid_minimalStock() {
-        // Minimum valid stock: 1 unit
-        Stoc stoc = new Stoc(5, "Cafea", 1, 0);
+    void BVA_Valid_AddProduct() {
+        // BVA: Minimum valid boundary - stock with minimum quantity
+        Stoc stoc1 = new Stoc(5, "Cafea", 1, 0);
         
-        stocService.add(stoc);
+        stocService.add(stoc1);
         
-        verify(stocRepository).save(stoc);
+        verify(stocRepository).save(stoc1);
+        
+        // BVA: Maximum valid boundary - stock with large quantity
+        Stoc stoc2 = new Stoc(6, "Apa", 10000, 100);
+        
+        stocService.add(stoc2);
+        
+        verify(stocRepository).save(stoc2);
     }
 
     @Test
-    void testAddProduct_BVA_Valid_largeStock() {
-        // Boundary: Large quantity
-        Stoc stoc = new Stoc(6, "Apa", 10000, 100);
+    void BVA_Invalid_AddProduct() {
+        // BVA: Boundary condition - stock quantity equals minimum stock
+        Stoc stocAtBoundary = new Stoc(9, "Zahar", 50, 50);
         
-        stocService.add(stoc);
+        stocService.add(stocAtBoundary);
         
-        verify(stocRepository).save(stoc);
+        verify(stocRepository).save(stocAtBoundary);
+        
+        // BVA: Just below minimum stock
+        Stoc stocBelowMinimum = new Stoc(10, "Lapte", 49, 50);
+        
+        stocService.add(stocBelowMinimum);
+        
+        verify(stocRepository).save(stocBelowMinimum);
     }
 
     // --- Equivalence Class Partitioning (ECP) ---
     @Test
-    void testAddProduct_ECP_Valid() {
+    void ECP_Valid_AddProduct() {
         // ECP: Valid stock entry with normal values
         Stoc stoc = new Stoc(7, "Ciocolata", 250, 25);
         
@@ -141,7 +155,7 @@ public class StocServiceTest {
     }
 
     @Test
-    void testAddProduct_ECP_Invalid() {
+    void ECP_Invalid_AddProduct() {
         // ECP: Invalid case - test with boundary conditions
         Stoc stoc = new Stoc(8, "Zahar", 0, 10);
         
